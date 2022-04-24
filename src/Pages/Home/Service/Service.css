@@ -1,0 +1,9 @@
+.service {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+.service > img {
+    border-radius: 10px;
+}
