@@ -20,14 +20,15 @@ const Header = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="home#home">Home</Nav.Link>
-                        <Nav.Link href="home#services">Services</Nav.Link>
-                        <Nav.Link href="home#experts">Experts</Nav.Link>
+                        <Nav.Link href="/home#home">Home</Nav.Link>
+                        <Nav.Link href="/home#services">Services</Nav.Link>
+                        <Nav.Link href="/home#experts">Experts</Nav.Link>
                         <Nav.Link as={Link} to="/about">About</Nav.Link>
                         {user &&
                             <>
                                 <Nav.Link as={Link} to="/addService">Add Service</Nav.Link>
                                 <Nav.Link as={Link} to="/manage">Manage</Nav.Link>
+                                <Nav.Link as={Link} to="/orders">Orders</Nav.Link>
                             </>
                         }
                         <Nav.Link >{user ? <button className="btn btn-light" onClick={logout}>Logout</button> : <button className="btn btn-light"><Link to='/login'>Sign In</Link></button>}</Nav.Link>

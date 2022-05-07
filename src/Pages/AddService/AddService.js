@@ -5,7 +5,7 @@ const AddService = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
         console.log(data)
-        const url = `http://localhost:5000/service/`;
+        const url = `https://quiet-forest-13370.herokuapp.com/service/`;
         fetch(url, {
             method: 'POST',
             headers: {'content-type': 'application/json'},

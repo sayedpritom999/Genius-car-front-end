@@ -6,9 +6,11 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-
 import auth from '../../firebase.init';
 import SocialLogin from './SocialLogin/SocialLogin';
 import Loading from '../Shared/Loading/Loading';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import PageTitle from '../PageTitle/PageTitle';
+import useToken from '../../hooks/useToken';
 
 
 const Login = () => {
@@ -21,6 +23,7 @@ const Login = () => {
     ] = useSignInWithEmailAndPassword(auth);
 
     const [sendPasswordResetEmail, sending, error1] = useSendPasswordResetEmail(auth);
+    const [token] = useToken(user);
 
     let errorElement;
 
@@ -35,11 +38,13 @@ const Login = () => {
     const passwordRef = useRef('');
     const navigate = useNavigate();
 
-    const handleSubmit = event => {
+    const handleSubmit = async event => {
         event.preventDefault();
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
-        signInWithEmailAndPassword(email, password);
+
+        await signInWithEmailAndPassword(email, password);
+
     }
 
     const navigateRegister = event => {
@@ -60,7 +65,7 @@ const Login = () => {
         return <Loading></Loading>
     }
 
-    if (user) {
+    if (token) {
         navigate(from, { replace: true });
     }
 
@@ -83,7 +88,6 @@ const Login = () => {
             <p>New to genius car? <Link to="/register" className="text-primary text-decoration-none" onClick={navigateRegister}>Please register</Link>  </p>
             <p>Forgot Password? <button className="btn btn-link text-decoration-none" onClick={resetPassword}>Reset Password</button>  </p>
             <SocialLogin></SocialLogin>
-            <ToastContainer />
         </div>
     );
 };
